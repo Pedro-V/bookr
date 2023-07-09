@@ -1,9 +1,12 @@
-from rest_framework.decorators import api_view
-from rest_framework.response import Response
-from .models import Book
+from rest_framework import generics
 
-@api_view()
-def book_amount(request):
-    num_books = Book.objects.count()
-    return Response({'num_books': num_books}) 
+from .models import Book, Contributor
+from .serializers import BookSerializer, ContributorSerializer
 
+class AllBooks(generics.ListAPIView):
+    queryset = Book.objects.all()
+    serializer_class = BookSerializer
+
+class ContributorView(generics.ListAPIView):
+    queryset = Contributor.objects.all()
+    serializer_class = ContributorSerializer

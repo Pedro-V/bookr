@@ -33,6 +33,9 @@ class Contributor(models.Model):
     last_names = models.CharField(max_length=50, help_text="The contributor's last name(s)")
     email = models.EmailField(help_text="The contact email for the contributor")
 
+    def amount_contributions(self):
+        return self.bookcontributor_set.count()
+
 
 class BookContributor(models.Model):
     """
