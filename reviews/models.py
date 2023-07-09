@@ -10,6 +10,9 @@ class Publisher(models.Model):
     website = models.URLField(help_text="The publisher's website.")
     email = models.EmailField(help_text="The publisher's email address.")
 
+    def __str__(self):
+        return self.name
+
 
 class Book(models.Model):
     """
